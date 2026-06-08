@@ -1,0 +1,410 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BombBatteryTester - Professional Mobile Diagnostics</title>
+    
+    <meta name="google-site-verification" content="mksAT_N32tl2J2iwS9unzgiRBWRLD_VqFRj9FrKSX44" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --accent-color: #00e676;
+            --accent-hover: #00c853;
+            --accent-glow: rgba(0, 230, 118, 0.4);
+            --bg-deep: #050609;
+            --card-bg: rgba(13, 17, 23, 0.7);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --text-main: #ffffff;
+            --text-muted: #8b949e;
+            --font-stack: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --telegram-color: #2AABEE;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Sfere di luce animate sullo sfondo */
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: orbFloat 20s infinite ease-in-out;
+        }
+        body::before {
+            width: 400px; height: 400px;
+            background: var(--accent-color);
+            top: -100px; left: -100px;
+        }
+        body::after {
+            width: 300px; height: 300px;
+            background: #00bcd4;
+            bottom: 10%; right: -50px;
+            animation-delay: -5s;
+        }
+
+        @keyframes orbFloat { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(50px, 30px); } }
+        @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-10px) rotate(2deg); } }
+        @keyframes titleGlow { 0%, 100% { text-shadow: 0 0 15px var(--accent-glow); } 50% { text-shadow: 0 0 30px var(--accent-glow), 0 0 10px #fff; } }
+        @keyframes shiny { 0% { left: -100%; } 100% { left: 100%; } }
+
+        .main-container {
+            max-width: 1000px;
+            width: 100%;
+            padding: 120px 20px;
+            text-align: center;
+            box-sizing: border-box;
+            z-index: 1;
+        }
+
+        /* Header e Loghi */
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        .header-section img.main-logo {
+            width: 130px;
+            filter: drop-shadow(0 0 20px var(--accent-glow));
+            animation: float 5s ease-in-out infinite;
+        }
+        .android-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.03);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .android-icon {
+            width: 38px; height: 38px;
+            fill: var(--accent-color);
+            filter: drop-shadow(0 0 10px var(--accent-glow));
+        }
+        .android-text {
+            font-weight: 700; font-size: 1.1em;
+            letter-spacing: 1px; color: #fff;
+            text-transform: uppercase;
+        }
+
+        /* Titolo Principale */
+        h1 {
+            font-size: 4.5em;
+            font-weight: 800;
+            margin: 0 0 30px 0;
+            letter-spacing: -3.5px;
+            line-height: 1;
+            animation: fadeInUp 0.8s ease-out 0.2s both, titleGlow 4s infinite;
+        }
+        h1 span { color: var(--accent-color); }
+
+        .subtitle {
+            font-size: 1.35em;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 90px auto;
+            line-height: 1.6;
+            font-weight: 400;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        /* Griglia Card */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            margin-bottom: 90px;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 50px;
+            text-align: left;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 230, 118, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 15px rgba(0, 230, 118, 0.1);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+        .card-icon-container {
+            background: rgba(0, 230, 118, 0.08);
+            padding: 15px;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 230, 118, 0.15);
+            transition: transform 0.5s ease;
+        }
+        .card:hover .card-icon-container { transform: rotate(-5deg) scale(1.1); }
+        .card-icon {
+            width: 32px; height: 32px;
+            fill: var(--accent-color);
+            display: block;
+        }
+        .card h2 { font-size: 1.8em; margin: 0; color: #fff; font-weight: 700; letter-spacing: -1px; }
+
+        .feature-list { list-style: none; padding: 0; margin: 0; }
+        .feature-list li {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+            font-size: 1.05em;
+        }
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 10px;
+            width: 8px; height: 8px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+        .feature-list li strong { color: #fff; font-weight: 600; }
+
+        /* Pulsante Download Premium */
+        .download-area { 
+            animation: fadeInUp 0.8s ease-out 0.8s both; 
+            margin-bottom: 50px;
+        }
+        .download-btn {
+            background: linear-gradient(135deg, var(--accent-color) 0%, #00e6ff 100%);
+            color: #000;
+            padding: 22px 65px;
+            border-radius: 18px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.25em;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 230, 118, 0.2);
+        }
+        .download-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: none;
+        }
+        .download-btn:hover::after { animation: shiny 1s forwards; }
+        .download-btn:hover {
+            transform: scale(1.03) translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 230, 118, 0.4);
+            color: #000;
+        }
+        .btn-version { font-weight: 400; opacity: 0.8; font-size: 0.9em; }
+
+        /* Sezione Contatti & QR */
+        .contact-section {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.8s ease-out 1s both;
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.02);
+        }
+        .contact-section h2 { margin: 0 0 15px 0; font-size: 1.5em; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+        .contact-section p { color: var(--text-muted); margin: 0 0 25px 0; line-height: 1.6; }
+        
+        .telegram-btn {
+            background: var(--telegram-color);
+            color: #fff;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(42, 171, 238, 0.2);
+            margin-bottom: 25px;
+        }
+        .telegram-btn svg { width: 22px; height: 22px; fill: currentColor; }
+        .telegram-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(42, 171, 238, 0.4);
+            background: #2cb5fa;
+        }
+
+        /* QR Code Container */
+        .qr-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            animation: fadeInUp 0.8s ease-out 1.2s both;
+        }
+        .qr-box {
+            background: #fff;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(42, 171, 238, 0.15);
+            transition: transform 0.3s ease;
+        }
+        .qr-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(42, 171, 238, 0.3);
+        }
+        .qr-box img {
+            display: block;
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+        }
+        .qr-text {
+            font-size: 0.85em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        footer {
+            margin-top: 80px;
+            padding: 40px;
+            color: #444;
+            font-size: 0.9em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* Responsività */
+        @media (max-width: 850px) {
+            h1 { font-size: 3.2em; letter-spacing: -2px; }
+            .grid { grid-template-columns: 1fr; gap: 25px; }
+            .card { padding: 35px; }
+            .header-section { flex-direction: column; gap: 30px; }
+            .main-container { padding-top: 80px; }
+            .contact-section { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="header-section">
+            <img src="logo.png" alt="BombBatteryTester Logo" class="main-logo">
+            <div class="android-badge">
+                <svg class="android-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4483-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0001.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 0 0-.1521-.5676.416.416 0 0 0-.5676.1521l-2.0223 3.503C15.5902 8.244 13.8533 7.8512 12 7.8512s-3.5902.3928-5.1367 1.0998L4.841 5.4482a.4161.4161 0 0 0-.5677-.1521.4157.4157 0 0 0-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3431-4.1021-2.6889-7.5743-6.1185-9.4396"/>
+                </svg>
+                <div class="android-text">Android</div>
+            </div>
+        </div>
+
+        <h1>BombBattery<span>Tester</span></h1>
+        <p class="subtitle">Soluzione diagnostica di livello ingegneristico per dispositivi Android. Sviluppato da <strong>Antonio</strong> per una lettura rapida e precisa dei log PMIC via ADB.</p>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon-container">
+                        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.5 12c.3 0 .5-.2.5-.5v-1c0-.3-.2-.5-.5-.5h-2c-.3 0-.5.2-.5.5v1c0 .3.2.5.5.5h2zm-15 0c.3 0 .5-.2.5-.5v-1c0-.3-.2-.5-.5-.5h-2c-.3 0-.5.2-.5.5v1c0 .3.2.5.5.5h2zm10 0c.3 0 .5-.2.5-.5v-1c0-.3-.2-.5-.5-.5h-2c-.3 0-.5.2-.5.5v1c0 .3.2.5.5.5h2zm-5 0c.3 0 .5-.2.5-.5v-1c0-.3-.2-.5-.5-.5h-2c-.3 0-.5.2-.5.5v1c0 .3.2.5.5.5h2zM21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H3V6h18v12z"/></svg>
+                    </div>
+                    <h2>Analisi Avanzata</h2>
+                </div>
+                <ul class="feature-list">
+                    <li><strong>Capacità Reale:</strong> Misurazione accurata della degradazione chimica rispetto al design originale.</li>
+                    <li><strong>Integrità Cella:</strong> Valutazione dello stato di salute basata su dati grezzi di sistema.</li>
+                    <li><strong>Report Tecnici:</strong> Generazione log essenziali per assistenza e ricondizionamento professionale.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon-container">
+                        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.3-.06.61-.06.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.57 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.21.07-.47-.12-.61l-2.01-1.58zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+                    </div>
+                    <h2>Core Tecnologico</h2>
+                </div>
+                <ul class="feature-list">
+                    <li><strong>ADB Bridge:</strong> Comunicazione diretta e sicura con il layer hardware di Android.</li>
+                    <li><strong>PMIC Polling:</strong> Estrazione dati in tempo reale dal chip di gestione della potenza.</li>
+                    <li><strong>Algoritmi Python:</strong> Elaborazione istantanea per risultati diagnostici immediati.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="download-area">
+            <a href="https://drive.usercontent.google.com/download?id=1O_NMn3jb0oGXv0YqOdbUCvw7Lwggms7K&export=download&authuser=0" class="download-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15L12 3M12 15L8 11M12 15L16 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17L2 18C2 19.6569 3.34315 21 5 21L19 21C20.6569 21 22 19.6569 22 18L22 17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>Scarica Tool <span class="btn-version">v2.5</span></span>
+            </a>
+        </div>
+
+        <div class="contact-section">
+            <h2>Hai bisogno di supporto?</h2>
+            <p>Se hai riscontrato un bug, hai suggerimenti per migliorare il tool o necessiti di assistenza tecnica, contattami direttamente su Telegram.</p>
+            
+            <a href="https://t.me/GODzkill" target="_blank" class="telegram-btn" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.892-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                </svg>
+                t.me/GODzkill
+            </a>
+
+            <div class="qr-container">
+                <div class="qr-box">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://t.me/GODzkill&color=050609&bgcolor=ffffff" alt="QR Code Telegram @GODzkill">
+                </div>
+                <div class="qr-text">Scansiona per chattare</div>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2026 Antonio. HIGH-END MOBILE DIAGNOSTICS.
+        </footer>
+    </div>
+
+</body>
+</html>
