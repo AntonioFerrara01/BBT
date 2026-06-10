@@ -132,13 +132,24 @@
 
         /* Header e Loghi */
         .header-section { display: flex; justify-content: space-between; align-items: center; margin-bottom: 70px; }
-        .header-section img.main-logo { width: 130px; filter: drop-shadow(0 0 25px var(--accent-glow)); animation: floatLogo 6s ease-in-out infinite; }
+        
+        .header-section img.main-logo {
+            width: 130px;
+            height: 130px; 
+            object-fit: contain; 
+            filter: drop-shadow(0 0 25px var(--accent-glow));
+            animation: floatLogo 6s ease-in-out infinite;
+        }
+        
         .android-badge {
             display: flex; align-items: center; gap: 12px; background: rgba(0, 0, 0, 0.6);
             padding: 12px 24px; border-radius: 50px; border: 1px solid var(--accent-color);
             box-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
         }
-        .android-icon { width: 36px; height: 36px; fill: var(--accent-color); filter: drop-shadow(0 0 8px var(--accent-glow)); }
+        .android-icon { 
+            width: 36px; height: 36px; object-fit: contain;
+            fill: var(--accent-color); filter: drop-shadow(0 0 8px var(--accent-glow)); 
+        }
         .android-text { font-weight: 800; font-size: 1.1em; letter-spacing: 1.5px; text-transform: uppercase; }
 
         h1 { font-size: 5em; font-weight: 800; margin: 0 0 25px 0; letter-spacing: -4px; line-height: 0.95; animation: titleGlow 4s infinite; }
@@ -182,7 +193,8 @@
         .brand-section { margin-bottom: 60px; text-align: left; }
         .brand-header {
             font-size: 2.2em; font-weight: 800; color: #fff; border-bottom: 2px solid var(--accent-color);
-            display: inline-block; padding-bottom: 8px; margin-bottom: 15px; letter-spacing: -1px;
+            display: flex; align-items: center; gap: 15px;
+            padding-bottom: 8px; margin-bottom: 15px; letter-spacing: -1px;
         }
         .brand-desc { color: var(--text-muted); font-size: 1.1em; margin-bottom: 30px; font-weight: 300; line-height: 1.5; }
         
@@ -261,7 +273,6 @@
            ========================================= */
 
         @media (max-width: 850px) {
-            /* Regolazioni Tablet */
             h1 { font-size: 3.8em; letter-spacing: -2px; }
             .grid { grid-template-columns: 1fr; gap: 30px; }
             .card { padding: 40px 30px; }
@@ -270,48 +281,34 @@
         }
 
         @media (max-width: 600px) {
-            /* Regolazioni Smartphone Perfette */
             .main-container { padding-top: 130px; padding-left: 15px; padding-right: 15px; }
-            
-            /* Navbar Compattata */
             .navbar { padding: 15px 0; }
             .nav-container { flex-direction: column; gap: 15px; }
             .nav-brand { font-size: 1.4em; }
             .nav-menu { gap: 20px; flex-wrap: wrap; justify-content: center; }
             .nav-link { font-size: 1.05em; padding: 5px 0; }
-            
-            /* Testi e Titoli per Mobile */
             h1 { font-size: 2.8em; margin-bottom: 15px; letter-spacing: -2px; }
             .subtitle { font-size: 1.1em; padding: 15px; margin-bottom: 60px; line-height: 1.5; }
-            
-            /* Loghi Smartphone */
-            .header-section img.main-logo { width: 110px; }
+            .header-section img.main-logo { width: 110px; height: 110px;}
             .android-badge { padding: 10px 20px; }
             .android-text { font-size: 1em; }
-            
-            /* Card Home su Mobile */
             .card { padding: 25px 20px; border-radius: 16px; }
             .card h2 { font-size: 1.5em; }
             .card-header { margin-bottom: 25px; gap: 15px; }
             .feature-list li { font-size: 1em; padding-left: 28px; margin-bottom: 18px; }
-            
-            /* Pulsante Download 100% su Mobile */
             .download-btn { width: 100%; padding: 20px 20px; font-size: 1.15em; box-sizing: border-box; }
             
-            /* Sezione Modelli Supportati Mobile */
+            /* Sezione Modelli Mobile */
             .brand-header { font-size: 1.8em; }
             .models-grid { grid-template-columns: 1fr; gap: 20px; }
             .model-series-card { padding: 20px; }
             .model-series-card h3 { font-size: 1.3em; }
-            /* Se il nome è troppo lungo, impagina sotto la batteria */
             .model-sublist li { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 0; }
             .capacity-badge { align-self: flex-start; margin-top: 2px; }
-            
             .tech-note-card { padding: 25px 20px; }
             .tech-note-card h3 { font-size: 1.25em; align-items: flex-start; }
             .tech-note-card p { font-size: 1.05em; }
 
-            /* Contatti Mobile */
             .contact-section { padding: 30px 20px; }
             .contact-section h2 { font-size: 1.5em; line-height: 1.3; }
             .telegram-btn { width: 100%; padding: 18px 20px; font-size: 1.1em; box-sizing: border-box; }
@@ -319,7 +316,6 @@
         }
         
         @media (max-width: 360px) {
-            /* Per telefoni estremamente piccoli (iPhone SE, vecchi Android) */
             h1 { font-size: 2.3em; }
             .nav-brand { font-size: 1.2em; }
             .nav-menu { gap: 15px; }
@@ -407,7 +403,15 @@
             </div>
             
             <div class="brand-section">
-                <h2 class="brand-header">🔵 Google Pixel</h2>
+                <h2 class="brand-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30">
+                        <path fill="#4285F4" d="M23.745 12.27c0-.825-.075-1.635-.21-2.43H12v4.545h6.63a6.37 6.37 0 0 1-2.76 4.185v3.45h4.455c2.61-2.43 4.11-6.045 4.11-9.75Z"/>
+                        <path fill="#34A853" d="M12 24c3.3 0 6.075-1.11 8.1-3.015l-4.455-3.45c-1.095.735-2.505 1.185-3.645 1.185-2.82 0-5.22-1.92-6.105-4.515H1.32v3.555C3.39 21.84 7.365 24 12 24Z"/>
+                        <path fill="#FBBC05" d="M5.895 14.205a7.13 7.13 0 0 1 0-4.41V6.24H1.32A11.97 11.97 0 0 0 0 12c0 1.935.465 3.78 1.32 5.445l4.575-3.24Z"/>
+                        <path fill="#EA4335" d="M12 4.785c1.8 0 3.405.63 4.68 1.74l3.51-3.51C18.075 1.125 15.3 0 12 0 7.365 0 3.39 2.16 1.32 6.24l4.575 3.555C6.78 7.215 9.18 4.785 12 4.785Z"/>
+                    </svg>
+                    Google Pixel
+                </h2>
                 <p class="brand-desc">I Pixel vengono riconosciuti direttamente dal loro nome commerciale.</p>
                 <div class="models-grid">
                     <div class="model-series-card">
@@ -456,7 +460,13 @@
             </div>
 
             <div class="brand-section">
-                <h2 class="brand-header">🔵 Samsung Galaxy</h2>
+                <h2 class="brand-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 30" width="85" height="26">
+                        <ellipse cx="50" cy="15" rx="48" ry="13" fill="none" stroke="#fff" stroke-width="2"/>
+                        <text x="50" y="19" fill="#fff" font-family="Arial, sans-serif" font-weight="900" font-size="12" text-anchor="middle" letter-spacing="1">SAMSUNG</text>
+                    </svg>
+                    Galaxy
+                </h2>
                 <p class="brand-desc">Rilevati tramite codice di fabbrica radice SM-. A fianco il modello commerciale per comodità.</p>
                 <div class="models-grid">
                     <div class="model-series-card">
@@ -534,7 +544,13 @@
             </div>
 
             <div class="brand-section">
-                <h2 class="brand-header">🔵 Xiaomi / Redmi / POCO</h2>
+                <h2 class="brand-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30">
+                        <rect width="24" height="24" rx="5" fill="#FF6900"/>
+                        <path d="M7 16V8h2.5v5.5h1V8h4.5v8h-2.5v-5.5h-1V16H7Zm8 0V8h2.5v8h-2.5Z" fill="#FFF"/>
+                    </svg>
+                    Xiaomi / Redmi / POCO
+                </h2>
                 <p class="brand-desc">Generalmente riconosciuti per nome o varianti globali.</p>
                 <div class="models-grid">
                     <div class="model-series-card">
@@ -569,7 +585,13 @@
             </div>
 
             <div class="brand-section">
-                <h2 class="brand-header">🔵 OnePlus</h2>
+                <h2 class="brand-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="#FFF">
+                        <path d="M8.2 16.5v-9H6.1v9h2.1zm8-6v-2h-1.5v-2h-2v2h-2v2h2v2h1.5v-2h2z"/>
+                        <rect x="2" y="2" width="20" height="20" rx="4" fill="none" stroke="#F5010C" stroke-width="2.5"/>
+                    </svg>
+                    OnePlus
+                </h2>
                 <p class="brand-desc">Rilevati tramite i prefissi seriali hardware.</p>
                 <div class="models-grid">
                     <div class="model-series-card">
@@ -614,7 +636,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.892-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                 </svg>
-                https://t.me/GODzkill
+                @GODzkill
             </a>
 
             <div class="qr-container">
