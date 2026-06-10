@@ -14,7 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* Regola per evitare sbavature su mobile */
         *, *::before, *::after {
             box-sizing: border-box;
         }
@@ -130,26 +129,20 @@
             text-align: center; z-index: 1;
         }
 
-        /* Header e Loghi */
+        /* Header e Loghi della Home */
         .header-section { display: flex; justify-content: space-between; align-items: center; margin-bottom: 70px; }
-        
         .header-section img.main-logo {
-            width: 130px;
-            height: 130px; 
+            width: 130px; height: 130px; 
             object-fit: contain; 
             filter: drop-shadow(0 0 25px var(--accent-glow));
             animation: floatLogo 6s ease-in-out infinite;
         }
-        
         .android-badge {
             display: flex; align-items: center; gap: 12px; background: rgba(0, 0, 0, 0.6);
             padding: 12px 24px; border-radius: 50px; border: 1px solid var(--accent-color);
             box-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
         }
-        .android-icon { 
-            width: 36px; height: 36px; object-fit: contain;
-            fill: var(--accent-color); filter: drop-shadow(0 0 8px var(--accent-glow)); 
-        }
+        .android-icon { width: 36px; height: 36px; object-fit: contain; fill: var(--accent-color); filter: drop-shadow(0 0 8px var(--accent-glow)); }
         .android-text { font-weight: 800; font-size: 1.1em; letter-spacing: 1.5px; text-transform: uppercase; }
 
         h1 { font-size: 5em; font-weight: 800; margin: 0 0 25px 0; letter-spacing: -4px; line-height: 0.95; animation: titleGlow 4s infinite; }
@@ -161,7 +154,7 @@
             border-radius: 15px; border: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* Griglia Card */
+        /* Griglia Card della Home */
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; margin-bottom: 90px; }
         .card {
             background: var(--card-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -172,15 +165,10 @@
             transform: translateY(-10px); border-color: var(--accent-color);
             box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 25px rgba(0, 230, 118, 0.15);
         }
-        
-        .card-header {
-            display: flex; align-items: center; gap: 20px; margin-bottom: 35px;
-            padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
+        .card-header { display: flex; align-items: center; gap: 20px; margin-bottom: 35px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .card-icon-container { background: rgba(0, 230, 118, 0.1); padding: 16px; border-radius: 15px; border: 1px solid rgba(0, 230, 118, 0.3); }
         .card-icon { width: 32px; height: 32px; fill: var(--accent-color); filter: drop-shadow(0 0 5px var(--accent-color)); }
         .card h2 { font-size: 1.8em; margin: 0; color: #fff; font-weight: 800; letter-spacing: -1px; }
-
         .feature-list { list-style: none; padding: 0; margin: 0; }
         .feature-list li { margin-bottom: 22px; color: #d1d5db; padding-left: 32px; position: relative; line-height: 1.6; font-size: 1.05em; }
         .feature-list li::before {
@@ -189,15 +177,24 @@
         }
         .feature-list li strong { color: #fff; font-weight: 700; }
 
-        /* --- PAGINA MODELLI SUPPORTATI --- */
+        /* --- STILI REQUISITI E BLOCCO DISTORSIONE BRAND LOGOS --- */
         .brand-section { margin-bottom: 60px; text-align: left; }
         .brand-header {
-            font-size: 2.2em; font-weight: 800; color: #fff; border-bottom: 2px solid var(--accent-color);
-            display: flex; align-items: center; gap: 15px;
-            padding-bottom: 8px; margin-bottom: 15px; letter-spacing: -1px;
+            font-size: 2.2em; font-weight: 800; color: #fff; border-bottom: 2px solid var(--card-border);
+            display: flex; align-items: center; gap: 16px; padding-bottom: 12px; margin-bottom: 15px; letter-spacing: -1px;
         }
-        .brand-desc { color: var(--text-muted); font-size: 1.1em; margin-bottom: 30px; font-weight: 300; line-height: 1.5; }
         
+        /* Regola Suprema anti-distorsione per gli SVG dei Brand */
+        .brand-header svg {
+            flex-shrink: 0;
+            object-fit: contain;
+        }
+        .brand-header svg.logo-google { width: 32px; height: 32px; }
+        .brand-header svg.logo-samsung { width: 125px; height: 20px; }
+        .brand-header svg.logo-xiaomi { width: 34px; height: 34px; }
+        .brand-header svg.logo-oneplus { width: 32px; height: 32px; }
+
+        .brand-desc { color: var(--text-muted); font-size: 1.1em; margin-bottom: 30px; font-weight: 300; line-height: 1.5; }
         .models-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
         .model-series-card {
             background: rgba(9, 13, 20, 0.9); border: 1px solid rgba(255,255,255,0.05);
@@ -205,7 +202,6 @@
         }
         .model-series-card:hover { border-color: var(--accent-color); transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0, 230, 118, 0.1); }
         .model-series-card h3 { color: var(--accent-color); margin: 0 0 20px 0; font-size: 1.4em; font-weight: 800; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 10px; }
-        
         .model-sublist { list-style: none; padding: 0; margin: 0; }
         .model-sublist li {
             display: flex; justify-content: space-between; align-items: center;
@@ -221,14 +217,13 @@
 
         .tech-note-card {
             background: rgba(0, 230, 118, 0.05); border: 1px solid rgba(0, 230, 118, 0.3);
-            border-radius: 16px; padding: 30px; text-align: left; margin-top: 50px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-radius: 16px; padding: 30px; text-align: left; margin-top: 50px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
         .tech-note-card h3 { color: var(--accent-color); margin: 0 0 15px 0; font-size: 1.4em; display: flex; align-items: center; gap: 10px; }
         .tech-note-card p { color: #a1b2c3; font-size: 1.1em; line-height: 1.6; margin: 0; }
         .tech-note-card strong { color: #fff; }
 
-        /* Pulsante Download */
+        /* Pulsanti e Footer */
         .download-area { margin-bottom: 70px; }
         .download-btn {
             background: var(--accent-color); color: #000; padding: 24px 70px; border-radius: 15px;
@@ -239,7 +234,6 @@
         .download-btn:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 20px 50px rgba(0, 230, 118, 0.6); background: #fff; }
         .btn-version { font-weight: 800; background: rgba(0,0,0,0.1); padding: 5px 10px; border-radius: 8px;}
 
-        /* Sezione Contatti & QR */
         .contact-section {
             background: rgba(0, 0, 0, 0.7); border: 1px solid var(--card-border); border-radius: 20px;
             padding: 45px; max-width: 650px; margin: 0 auto; backdrop-filter: blur(15px); box-shadow: 0 20px 40px rgba(0,0,0,0.5);
@@ -267,11 +261,7 @@
 
         footer { margin-top: 100px; padding: 40px; color: #4a5568; font-size: 0.95em; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; width: 100%; text-align: center; }
 
-
-        /* =========================================
-           OTTIMIZZAZIONE ESTREMA PER MOBILE
-           ========================================= */
-
+        /* Responsività Mobile */
         @media (max-width: 850px) {
             h1 { font-size: 3.8em; letter-spacing: -2px; }
             .grid { grid-template-columns: 1fr; gap: 30px; }
@@ -298,8 +288,7 @@
             .feature-list li { font-size: 1em; padding-left: 28px; margin-bottom: 18px; }
             .download-btn { width: 100%; padding: 20px 20px; font-size: 1.15em; box-sizing: border-box; }
             
-            /* Sezione Modelli Mobile */
-            .brand-header { font-size: 1.8em; }
+            .brand-header { font-size: 1.6em; }
             .models-grid { grid-template-columns: 1fr; gap: 20px; }
             .model-series-card { padding: 20px; }
             .model-series-card h3 { font-size: 1.3em; }
@@ -404,13 +393,13 @@
             
             <div class="brand-section">
                 <h2 class="brand-header">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30">
+                    <svg class="logo-google" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path fill="#4285F4" d="M23.745 12.27c0-.825-.075-1.635-.21-2.43H12v4.545h6.63a6.37 6.37 0 0 1-2.76 4.185v3.45h4.455c2.61-2.43 4.11-6.045 4.11-9.75Z"/>
                         <path fill="#34A853" d="M12 24c3.3 0 6.075-1.11 8.1-3.015l-4.455-3.45c-1.095.735-2.505 1.185-3.645 1.185-2.82 0-5.22-1.92-6.105-4.515H1.32v3.555C3.39 21.84 7.365 24 12 24Z"/>
                         <path fill="#FBBC05" d="M5.895 14.205a7.13 7.13 0 0 1 0-4.41V6.24H1.32A11.97 11.97 0 0 0 0 12c0 1.935.465 3.78 1.32 5.445l4.575-3.24Z"/>
                         <path fill="#EA4335" d="M12 4.785c1.8 0 3.405.63 4.68 1.74l3.51-3.51C18.075 1.125 15.3 0 12 0 7.365 0 3.39 2.16 1.32 6.24l4.575 3.555C6.78 7.215 9.18 4.785 12 4.785Z"/>
                     </svg>
-                    Google Pixel
+                    <span>Google Pixel</span>
                 </h2>
                 <p class="brand-desc">I Pixel vengono riconosciuti direttamente dal loro nome commerciale.</p>
                 <div class="models-grid">
@@ -461,10 +450,10 @@
 
             <div class="brand-section">
                 <h2 class="brand-header">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 18" width="100" height="18" fill="#FFF">
-                        <path d="M7.3 12.3c0 2.3 1.9 3 4.2 3.4 2.5.4 5 .6 5 2.1 0 1.2-1.4 1.7-3.1 1.7-2.6 0-5.1-.9-5.1-3.2H4c0 4.1 3.5 5 7.4 5 4.3 0 7.4-1.4 7.4-4.5 0-2.6-2.1-3.3-4.8-3.7-2.3-.4-4.4-.5-4.4-1.8 0-1 .9-1.5 2.6-1.5 2.1 0 4.4.7 4.4 2.8h4.2c0-3.6-2.9-4.5-6.6-4.5-3.8 0-6.7 1.1-6.7 4.2zm20.8-4H24l-3.9 13h4.3l.7-2.5h4.4l.7 2.5h4.3l-3.9-13zm-2.4 8l1.5-5 1.5 5h-3zm21.4-8v8.6L43 8.3h-3.8v13h3.9v-8.6l4.2 8.6h3.8v-13h-3.9zm13.8 4c0-2.6 1.8-3.3 4-3.7 2.3-.4 4.5-.5 4.5-1.9 0-1-.9-1.4-2.4-1.4-2.2 0-4.3.7-4.3 2.7h-4.2c0-3.6 3-4.4 6.5-4.4 3.9 0 6.6 1.1 6.6 4.1 0 2.4-1.8 3.1-4.3 3.5-2.4.4-4.2.6-4.2 1.9 0 1 .9 1.4 2.8 1.4 2.3 0 4.7-.8 4.7-3h4.2c0 3.9-3.2 4.7-6.9 4.7-4.3 0-7.2-1.3-7.2-4.5zm19.8-4V17c0 2.4 1.3 4 3.9 4s3.9-1.6 3.9-4v-4.7h3.9V17c0 4.8-3.3 5.6-7.8 5.6s-7.8-.8-7.8-5.6v-4.7h3.9zm16.8 0v8.6l4.2-8.6H102v13h-3.9v-8.6l-4.2 8.6h-3.8v-13h3.9zm10.7 6.5v2.2h4.5v2.6h-4.5V19h5.4v2.4h-9.3v-13h9v2.4h-5.1z" transform="translate(0, -6)"/>
+                    <svg class="logo-samsung" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 82">
+                        <path fill="#FFF" d="M37.5 52.7c0 10.4 8.7 13.4 19 15.3 11.3 2 22.4 2.7 22.4 9.4 0 5.4-6.3 7.6-14 7.6-11.7 0-23-4-23-14.4H4.2C4.2 89.3 20 93.4 37.5 93.4c19.4 0 33.3-6.3 33.3-20.2 0-11.7-9.4-14.8-21.6-16.6-10.4-1.8-19.8-2.2-19.8-8.1 0-4.5 4-6.7 11.7-6.7 9.4 0 19.8 3.1 19.8 12.6h33.3c0-16.2-13-19.8-29.7-19.8-17.1 0-30.1 5-30.1 18.1m93.5-18.1l-10.8 58.5h19.4l3.1-11.2h19.8l3.1 11.2h19.4L168 34.6h-17.5l-19.5 58.5zm-10.8 36h6.7l6.7-22.5 6.7 22.5h-20.1zm96.2-36v38.7L235.3 34.6H218v58.5h17.5v-38.7l18.9 38.7h17.1V34.6h-17.5zm62.1 18.1c0-11.7 8.1-14.8 18-16.6 10.4-1.8 20.2-2.2 20.2-8.5 0-4.5-4-6.3-10.8-6.3-9.9 0-19.4 3.1-19.4 12.2h-33.3c0-16.2 13.5-19.8 29.2-19.8 17.5 0 29.7 5 29.7 18.4 0 10.8-8.1 14-19.4 15.8-10.8 1.8-18.9 2.7-18.9 8.5 0 4.5 4 6.3 12.6 6.3 10.4 0 21.1-3.6 21.1-13.5h33.3c0 17.5-14.4 21.1-31 21.1-19.4 0-32.4-5.8-32.4-20.2m89.1-18.1v21.1c0 10.8 5.8 18 17.5 18s17.5-7.2 17.5-18V34.6h17.5v21.1c0 21.6-14.8 25.2-35 25.2s-35-3.6-35-25.2V34.6h17.5zm75.6 0v38.7l18.9-38.7h17.1v58.5h-17.5v-38.7L460 93.1h-17.1V34.6h17.5zm48.1 29.2v9.9h20.2v11.7h-20.2V85.5h24.3v10.8H481v-58.5h40.5V48.6h-23v9.9z" transform="translate(-4.2, -34.6)"/>
                     </svg>
-                    Galaxy
+                    <span>Samsung Galaxy</span>
                 </h2>
                 <p class="brand-desc">Rilevati tramite codice di fabbrica radice SM-. A fianco il modello commerciale per comodità.</p>
                 <div class="models-grid">
@@ -544,11 +533,11 @@
 
             <div class="brand-section">
                 <h2 class="brand-header">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30">
-                        <path d="M12 24c6.19 0 12-1.24 12-12S18.19 0 12 0 0 1.24 0 12s5.81 12 12 12z" fill="#FF6900"/>
-                        <path d="M7 16V8h2.5v5.5h1V8h4.5v8h-2.5v-5.5h-1V16H7Zm8 0V8h2.5v8h-2.5Z" fill="#FFF"/>
+                    <svg class="logo-xiaomi" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12 0C19.2 0 24 4.8 24 12s-4.8 12-12 12S0 19.2 0 12 4.8 0 12 0z" fill="#FF6900"/>
+                        <path d="M7 16V9h2.2v5.2h0.8V9h2.5v7h-2.2v-5.2h-0.5v5.2H7zm7.2 0V9h2.2v7h-2.2z" fill="#FFF"/>
                     </svg>
-                    Xiaomi / Redmi / POCO
+                    <span>Xiaomi / Redmi / POCO</span>
                 </h2>
                 <p class="brand-desc">Generalmente riconosciuti per nome o varianti globali.</p>
                 <div class="models-grid">
@@ -585,11 +574,11 @@
 
             <div class="brand-section">
                 <h2 class="brand-header">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="#FFF">
+                    <svg class="logo-oneplus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFF">
                         <path d="M8.2 16.5v-9H6.1v9h2.1zm8-6v-2h-1.5v-2h-2v2h-2v2h2v2h1.5v-2h2z"/>
                         <rect x="2" y="2" width="20" height="20" rx="4" fill="none" stroke="#F5010C" stroke-width="2.5"/>
                     </svg>
-                    OnePlus
+                    <span>OnePlus</span>
                 </h2>
                 <p class="brand-desc">Rilevati tramite i prefissi seriali hardware.</p>
                 <div class="models-grid">
@@ -616,7 +605,7 @@
                     </svg>
                     Sistema di Fallback Intelligente
                 </h3>
-                <p>Nessun problema se colleghi un dispositivo che non è presente in questa lista! <strong>BombBatteryTester è programmato per reconocerere automaticamente i modelli sconosciuti.</strong> In tal caso, il terminale aprirà un prompt chiedendoti di inserire manualmente la <em>capacità di fabbrica (Design Capacity)</em> in mAh del dispositivo collegato. Una volta inserita, il software procederà normalmente estraendo i log ADB e calcolando l'effettivo stato di degrado.</p>
+                <p>Nessun problema se colleghi un dispositivo che non è presente in questa lista! <strong>BombBatteryTester è programmato per riconoscere automaticamente i modelli sconosciuti.</strong> In tal caso, il terminale aprirà un prompt chiedendoti di inserire manualmente la <em>capacità di fabbrica (Design Capacity)</em> in mAh del dispositivo collegato. Una volta inserita, il software procederà normalmente estraendo i log ADB e calcolando l'effettivo stato di degrado.</p>
             </div>
             
             <div style="margin-top: 60px; text-align: center;">
@@ -653,16 +642,13 @@
 
     <script>
         function switchPage(pageId) {
-            // Nascondi tutte le sezioni
             document.querySelectorAll('.page-section').forEach(section => {
                 section.classList.remove('active');
             });
-            // Rimuovi lo stato attivo dai link del menu
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
 
-            // Mostra la sezione selezionata e attiva il link corrispondente
             if(pageId === 'home') {
                 document.getElementById('page-home').classList.add('active');
                 document.getElementById('link-home').classList.add('active');
