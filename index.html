@@ -183,11 +183,17 @@
         }
         .feature-list li strong { color: #fff; font-weight: 700; }
 
-        /* --- PAGINA MODELLI SUPPORTATI --- */
+        /* --- PAGINA MODELLI SUPPORTATI (STILI LOGHI BRAND) --- */
         .brand-section { margin-bottom: 60px; text-align: left; }
         .brand-header {
             font-size: 2.2em; font-weight: 800; color: #fff; border-bottom: 2px solid var(--accent-color);
-            display: inline-block; padding-bottom: 8px; margin-bottom: 15px; letter-spacing: -1px;
+            display: flex; align-items: center; gap: 15px; /* Allinea logo e testo del marchio */
+            padding-bottom: 8px; margin-bottom: 15px; letter-spacing: -1px;
+        }
+        .brand-logo-inline {
+            height: 35px; /* Altezza proporzionata al testo */
+            width: auto;
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.2)); /* Leggero bagliore per risaltare */
         }
         .brand-desc { color: var(--text-muted); font-size: 1.1em; margin-bottom: 30px; font-weight: 300; line-height: 1.5; }
         
@@ -271,6 +277,10 @@
             .card { padding: 40px 30px; }
             .header-section { flex-direction: column; gap: 35px; }
             .main-container { padding-top: 170px; }
+            
+            /* Adattamento titoli marche su tablet */
+            .brand-header { font-size: 2em; gap: 10px; }
+            .brand-logo-inline { height: 30px; }
         }
 
         @media (max-width: 600px) {
@@ -298,7 +308,10 @@
             
             .download-btn { width: 100%; padding: 20px 20px; font-size: 1.15em; box-sizing: border-box; }
             
-            .brand-header { font-size: 1.8em; }
+            /* Sezione Modelli Supportati Mobile con Loghi Brand */
+            .brand-header { font-size: 1.8em; gap: 10px; }
+            .brand-logo-inline { height: 28px; } /* Loghi più piccoli su mobile */
+            
             .models-grid { grid-template-columns: 1fr; gap: 20px; }
             .model-series-card { padding: 20px; }
             .model-series-card h3 { font-size: 1.3em; }
@@ -323,6 +336,9 @@
             .nav-menu { gap: 15px; }
             .nav-link { font-size: 0.95em; }
             .download-btn { flex-direction: column; gap: 10px; }
+            
+            .brand-header { font-size: 1.5em; gap: 8px; }
+            .brand-logo-inline { height: 24px; }
         }
     </style>
 </head>
@@ -408,7 +424,10 @@
             </div>
             
             <div class="brand-section">
-                <h2 class="brand-header">🔵 Google Pixel</h2>
+                <h2 class="brand-header">
+                    <img src="google.png" alt="Google" class="brand-logo-inline">
+                    Google Pixel
+                </h2>
                 <p class="brand-desc">I Pixel vengono riconosciuti direttamente dal loro nome commerciale.</p>
                 <div class="models-grid">
                     <div class="model-series-card">
@@ -457,7 +476,10 @@
             </div>
 
             <div class="brand-section">
-                <h2 class="brand-header">🔵 Samsung Galaxy</h2>
+                <h2 class="brand-header">
+                    <img src="samsung.png" alt="Samsung" class="brand-logo-inline">
+                    Samsung Galaxy
+                </h2>
                 <p class="brand-desc">Rilevati tramite codice di fabbrica radice SM-. A fianco il modello commerciale per comodità.</p>
                 <div class="models-grid">
                     <div class="model-series-card">
@@ -535,7 +557,10 @@
             </div>
 
             <div class="brand-section">
-                <h2 class="brand-header">🔵 Xiaomi / Redmi / POCO</h2>
+                <h2 class="brand-header">
+                    <img src="xiaomi.png" alt="Xiaomi" class="brand-logo-inline">
+                    Xiaomi / Redmi / POCO
+                </h2>
                 <p class="brand-desc">Generalmente riconosciuti per nome o varianti globali.</p>
                 <div class="models-grid">
                     <div class="model-series-card">
@@ -570,7 +595,10 @@
             </div>
 
             <div class="brand-section">
-                <h2 class="brand-header">🔵 OnePlus</h2>
+                <h2 class="brand-header">
+                    <img src="oneplus.png" alt="OnePlus" class="brand-logo-inline">
+                    OnePlus
+                </h2>
                 <p class="brand-desc">Rilevati tramite i prefissi seriali hardware.</p>
                 <div class="models-grid">
                     <div class="model-series-card">
