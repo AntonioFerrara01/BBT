@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* Regola d'oro per evitare sbavature su mobile */
+        /* Evita sbavature e scrollbar orizzontali */
         *, *::before, *::after {
             box-sizing: border-box;
         }
@@ -87,7 +87,7 @@
             z-index: 100;
             display: flex;
             justify-content: center;
-            padding: 22px 0; 
+            padding: 18px 0; 
             box-shadow: 0 5px 30px rgba(0,0,0,0.5); 
         }
         .nav-container {
@@ -99,9 +99,14 @@
             font-weight: 800; font-size: 1.5em; 
             letter-spacing: -1px;
             color: var(--text-main); text-decoration: none; cursor: pointer;
+            display: flex; align-items: center; gap: 12px; /* Allinea logo e testo del brand */
         }
         .nav-brand span { color: var(--accent-color); }
-        .nav-menu { display: flex; gap: 40px; list-style: none; margin: 0; padding: 0; }
+        .nav-logo {
+            height: 35px; width: auto;
+            filter: drop-shadow(0 0 8px var(--accent-glow));
+        }
+        .nav-menu { display: flex; gap: 40px; list-style: none; margin: 0; padding: 0; align-items: center; }
         .nav-link {
             color: var(--text-main); opacity: 0.85; text-decoration: none;
             font-weight: 700; font-size: 1.15em; cursor: pointer;
@@ -126,7 +131,7 @@
 
         .main-container {
             max-width: 1000px; width: 100%;
-            padding: 160px 20px 60px 20px; 
+            padding: 180px 20px 60px 20px; /* Spazio aumentato per la navbar */
             text-align: center; z-index: 1;
         }
 
@@ -257,53 +262,47 @@
 
 
         /* =========================================
-           OTTIMIZZAZIONE ESTREMA PER MOBILE (SMARTPHONE E TABLET)
+           OTTIMIZZAZIONE ESTREMA PER MOBILE
            ========================================= */
 
         @media (max-width: 850px) {
-            /* Regolazioni Tablet */
             h1 { font-size: 3.8em; letter-spacing: -2px; }
             .grid { grid-template-columns: 1fr; gap: 30px; }
             .card { padding: 40px 30px; }
             .header-section { flex-direction: column; gap: 35px; }
-            .main-container { padding-top: 150px; }
+            .main-container { padding-top: 170px; }
         }
 
         @media (max-width: 600px) {
-            /* Regolazioni Smartphone Perfette */
-            .main-container { padding-top: 130px; padding-left: 15px; padding-right: 15px; }
+            .main-container { padding-top: 160px; padding-left: 15px; padding-right: 15px; }
             
-            /* Navbar Compattata */
-            .navbar { padding: 15px 0; }
-            .nav-container { flex-direction: column; gap: 15px; }
-            .nav-brand { font-size: 1.4em; }
+            /* Navbar Compattata con Logo su Mobile */
+            .navbar { padding: 12px 0; }
+            .nav-container { flex-direction: column; gap: 12px; }
+            .nav-brand { font-size: 1.3em; gap: 8px; }
+            .nav-logo { height: 28px; }
             .nav-menu { gap: 20px; flex-wrap: wrap; justify-content: center; }
             .nav-link { font-size: 1.05em; padding: 5px 0; }
             
-            /* Testi e Titoli per Mobile */
             h1 { font-size: 2.8em; margin-bottom: 15px; letter-spacing: -2px; }
             .subtitle { font-size: 1.1em; padding: 15px; margin-bottom: 60px; line-height: 1.5; }
             
-            /* Loghi Smartphone */
             .header-section img.main-logo { width: 110px; }
             .android-badge { padding: 10px 20px; }
             .android-text { font-size: 1em; }
             
-            /* Card Home su Mobile */
             .card { padding: 25px 20px; border-radius: 16px; }
             .card h2 { font-size: 1.5em; }
             .card-header { margin-bottom: 25px; gap: 15px; }
             .feature-list li { font-size: 1em; padding-left: 28px; margin-bottom: 18px; }
             
-            /* Pulsante Download 100% su Mobile */
             .download-btn { width: 100%; padding: 20px 20px; font-size: 1.15em; box-sizing: border-box; }
             
-            /* Sezione Modelli Supportati Mobile */
             .brand-header { font-size: 1.8em; }
             .models-grid { grid-template-columns: 1fr; gap: 20px; }
             .model-series-card { padding: 20px; }
             .model-series-card h3 { font-size: 1.3em; }
-            /* Se il nome è troppo lungo, impagina sotto la batteria */
+            
             .model-sublist li { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 0; }
             .capacity-badge { align-self: flex-start; margin-top: 2px; }
             
@@ -311,7 +310,6 @@
             .tech-note-card h3 { font-size: 1.25em; align-items: flex-start; }
             .tech-note-card p { font-size: 1.05em; }
 
-            /* Contatti Mobile */
             .contact-section { padding: 30px 20px; }
             .contact-section h2 { font-size: 1.5em; line-height: 1.3; }
             .telegram-btn { width: 100%; padding: 18px 20px; font-size: 1.1em; box-sizing: border-box; }
@@ -319,9 +317,9 @@
         }
         
         @media (max-width: 360px) {
-            /* Per telefoni estremamente piccoli (iPhone SE, vecchi Android) */
             h1 { font-size: 2.3em; }
-            .nav-brand { font-size: 1.2em; }
+            .nav-brand { font-size: 1.1em; gap: 6px; }
+            .nav-logo { height: 24px; }
             .nav-menu { gap: 15px; }
             .nav-link { font-size: 0.95em; }
             .download-btn { flex-direction: column; gap: 10px; }
@@ -336,7 +334,10 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <a class="nav-brand" onclick="switchPage('home')">BombBattery<span>Tester</span></a>
+            <a class="nav-brand" onclick="switchPage('home')">
+                <img src="logo.png" alt="Logo" class="nav-logo">
+                BombBattery<span>Tester</span>
+            </a>
             <ul class="nav-menu">
                 <li><a id="link-home" class="nav-link active" onclick="switchPage('home')">Home</a></li>
                 <li><a id="link-models" class="nav-link" onclick="switchPage('models')">Modelli Supportati</a></li>
@@ -595,7 +596,7 @@
                     </svg>
                     Sistema di Fallback Intelligente
                 </h3>
-                <p>Nessun problema se colleghi un dispositivo che non è presente in questa lista! <strong>BombBatteryTester è programmato per riconoscere automaticamente i modelli sconosciuti.</strong> In tal caso, il terminale aprirà un prompt chiedendoti di inserire manualmente la <em>capacità di fabbrica (Design Capacity)</em> in mAh del dispositivo collegato. Una volta inserita, il software procederà normalmente estraendo i log ADB e calcolando l'effettivo stato di degrado.</p>
+                <p>Nessun problema se colleghi un dispositivo che non è presente in questa lista! <strong>BombBatteryTester è programmato per reconocerere automaticamente i modelli sconosciuti.</strong> In tal caso, il terminale aprirà un prompt chiedendoti di inserire manualmente la <em>capacità di fabbrica (Design Capacity)</em> in mAh del dispositivo collegato. Una volta inserita, il software procederà normalmente estraendo i log ADB e calcolando l'effettivo stato di degrado.</p>
             </div>
             
             <div style="margin-top: 60px; text-align: center;">
@@ -632,16 +633,13 @@
 
     <script>
         function switchPage(pageId) {
-            // Nascondi tutte le sezioni
             document.querySelectorAll('.page-section').forEach(section => {
                 section.classList.remove('active');
             });
-            // Rimuovi lo stato attivo dai link del menu
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
 
-            // Mostra la sezione selezionata e attiva il link corrispondente
             if(pageId === 'home') {
                 document.getElementById('page-home').classList.add('active');
                 document.getElementById('link-home').classList.add('active');
