@@ -355,21 +355,24 @@
 </head>
 <body>
 
+    <!-- Popup Avviso Versione 3.1 -->
     <div id="versionModal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-icon">
                 <img src="logo.png" alt="BombBatteryTester Logo">
             </div>
             <h2>Aggiornamento Disponibile!</h2>
-            <p>È ora disponibile la nuova <strong>Versione 3.0</strong> di BombBatteryTester con il database modelli espanso.</p>
+            <p>È ora disponibile la nuova <strong>Versione 3.1</strong> di BombBatteryTester con il database modelli espanso.</p>
             <button onclick="closeModal()" class="modal-btn">Ok, Chiudi</button>
         </div>
     </div>
 
+    <!-- Sfondo Animato -->
     <div class="bg-gradient"></div>
     <div class="bg-grid"></div>
     <div class="bg-glow-center"></div>
 
+    <!-- Barra Menu Superiore -->
     <nav class="navbar">
         <div class="nav-container">
             <a class="nav-brand" onclick="switchPage('home')">BombBattery<span>Tester</span></a>
@@ -382,7 +385,9 @@
 
     <div class="main-container">
 
+        <!-- ================= PAGINA 1: HOME ================= -->
         <section id="page-home" class="page-section active">
+            <!-- Header Logos -->
             <div class="header-section">
                 <img src="logo.png" alt="BombBatteryTester Logo" class="main-logo">
                 <div class="android-badge">
@@ -397,6 +402,7 @@
             <p class="subtitle">Soluzione diagnostica di livello ingegneristico per dispositivi Android. Sviluppato da <strong>Antonio</strong> per una lettura rapida e precisa dei log PMIC via ADB.</p>
 
             <div class="grid">
+                <!-- Card 1 -->
                 <div class="card">
                     <div class="card-header">
                         <div class="card-icon-container">
@@ -410,6 +416,7 @@
                         <li><strong>Report Tecnici:</strong> Generazione log essenziali per assistenza e ricondizionamento professionale.</li>
                     </ul>
                 </div>
+                <!-- Card 2 -->
                 <div class="card">
                     <div class="card-header">
                         <div class="card-icon-container">
@@ -425,23 +432,26 @@
                 </div>
             </div>
 
+            <!-- Download Button -->
             <div class="download-area">
-                <a href="https://github.com/AntonioFerrara01/BBT/releases/tag/untagged-6ae0bb2978114e7f3404" class="download-btn">
+                <a href="https://github.com/AntonioFerrara01/BBT/releases/download/untagged-59071fc5f82f2e32b47c/bbt.exe" class="download-btn">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15L12 3M12 15L8 11M12 15L16 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17L2 18C2 19.6569 3.34315 21 5 21L19 21C20.6569 21 22 19.6569 22 18L22 17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <span>Scarica Tool</span>
-                    <span class="btn-version">v3.0</span>
+                    <span class="btn-version">v3.1</span>
                 </a>
             </div>
         </section>
 
 
+        <!-- ================= PAGINA 2: MODELLI SUPPORTATI ================= -->
         <section id="page-models" class="page-section">
             
             <div style="text-align: center; margin-bottom: 60px;">
                 <h1>Modelli <span>Supportati</span></h1>
-                <p class="subtitle" style="margin-bottom: 0; max-width: 800px;">Elenco completo dei modelli attualmente registrati nel database del BombBatteryTester v3.0, accompagnati dalla capacità di fabbrica impostata. Usa questa mappa per un riconoscimento rapido al banco.</p>
+                <p class="subtitle" style="margin-bottom: 0; max-width: 800px;">Elenco completo dei modelli attualmente registrati nel database del BombBatteryTester v3.1, accompagnati dalla capacità di fabbrica impostata. Usa questa mappa per un riconoscimento rapido al banco.</p>
             </div>
             
+            <!-- GOOGLE PIXEL -->
             <div class="brand-section">
                 <h2 class="brand-header">🔵 Google Pixel</h2>
                 <p class="brand-desc">I dispositivi Pixel vengono riconosciuti direttamente dal loro nome commerciale.</p>
@@ -505,6 +515,7 @@
                 </div>
             </div>
 
+            <!-- SAMSUNG GALAXY S -->
             <div class="brand-section">
                 <h2 class="brand-header">🔵 Samsung Galaxy S</h2>
                 <p class="brand-desc">Rilevati tramite codice di fabbrica radice hardware. A fianco il modello commerciale.</p>
@@ -557,6 +568,7 @@
                 </div>
             </div>
 
+            <!-- SAMSUNG GALAXY Z -->
             <div class="brand-section">
                 <h2 class="brand-header">🔵 Samsung Galaxy Z (Pieghevoli)</h2>
                 <div class="models-grid">
@@ -587,6 +599,7 @@
                 </div>
             </div>
 
+            <!-- SAMSUNG GALAXY A -->
             <div class="brand-section">
                 <h2 class="brand-header">🔵 Samsung Galaxy A (Mid-Range)</h2>
                 <div class="models-grid">
@@ -627,6 +640,7 @@
                 </div>
             </div>
 
+            <!-- XIAOMI / REDMI / POCO -->
             <div class="brand-section">
                 <h2 class="brand-header">🔵 Xiaomi / Redmi / POCO</h2>
                 <div class="models-grid">
@@ -701,6 +715,7 @@
                 </div>
             </div>
 
+            <!-- ONEPLUS -->
             <div class="brand-section">
                 <h2 class="brand-header">🔵 OnePlus</h2>
                 <div class="models-grid">
@@ -734,6 +749,7 @@
                 </div>
             </div>
 
+            <!-- MOTOROLA -->
             <div class="brand-section">
                 <h2 class="brand-header">🔵 Motorola</h2>
                 <div class="models-grid">
@@ -762,6 +778,7 @@
                 </div>
             </div>
 
+            <!-- OPPO -->
             <div class="brand-section">
                 <h2 class="brand-header">🔵 Oppo</h2>
                 <div class="models-grid">
@@ -782,6 +799,7 @@
                 </div>
             </div>
 
+            <!-- VIVO -->
             <div class="brand-section">
                 <h2 class="brand-header">🔵 Vivo</h2>
                 <div class="models-grid">
@@ -800,6 +818,7 @@
                 </div>
             </div>
 
+            <!-- ASUS -->
             <div class="brand-section">
                 <h2 class="brand-header">🔵 Asus</h2>
                 <div class="models-grid">
@@ -817,6 +836,7 @@
                 </div>
             </div>
 
+            <!-- SONY & NOTHING -->
             <div class="brand-section">
                 <h2 class="brand-header">🔵 Sony & Nothing</h2>
                 <div class="models-grid">
@@ -834,6 +854,7 @@
                 </div>
             </div>
 
+            <!-- Nota Sistema Fallback -->
             <div class="tech-note-card">
                 <h3>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -847,15 +868,16 @@
             </div>
             
             <div style="margin-top: 60px; text-align: center;">
-                <a href="https://github.com/AntonioFerrara01/BBT/releases/download/untagged-fc03dec2cc7599f4efad/BombBatteryTester.v3.0.exe" class="download-btn">
+                <a href="https://github.com/AntonioFerrara01/BBT/releases/download/untagged-59071fc5f82f2e32b47c/bbt.exe" class="download-btn">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15L12 3M12 15L8 11M12 15L16 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17L2 18C2 19.6569 3.34315 21 5 21L19 21C20.6569 21 22 19.6569 22 18L22 17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <span>Scarica Tool</span>
-                    <span class="btn-version">v3.0</span>
+                    <span class="btn-version">v3.1</span>
                 </a>
             </div>
         </section>
 
 
+        <!-- ================= SEZIONE CONTATTI CONDIVISA ================= -->
         <div class="contact-section" style="margin-top: 80px;">
             <h2>Hai bisogno di supporto?</h2>
             <p>Se hai riscontrato un bug, hai suggerimenti per migliorare il tool o necessiti di assistenza tecnica, contattami direttamente su Telegram.</p>
@@ -880,6 +902,7 @@
         </footer>
     </div>
 
+    <!-- Script Gestione UI -->
     <script>
         // Scambio Pagine
         function switchPage(pageId) {
