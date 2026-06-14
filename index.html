@@ -164,7 +164,7 @@
         }
 
         /* --- GESTIONE PAGINE --- */
-        .page-section { display: none; width: 100%; animation: fadeInUp 0.6s ease-out forwards; }
+        .page-section { display: none; width: 100%; animation: fadeInUp 0.6s ease-out forwards; position: relative; z-index: 5; }
         .page-section.active { display: block; }
 
         @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
@@ -257,18 +257,39 @@
         .tech-note-card strong { color: #fff; }
 
         /* --- BOTTONI CONDIVISI --- */
-        .download-area { margin-bottom: 70px; }
+        .download-area { margin-bottom: 70px; position: relative; z-index: 50; }
+        .download-wrapper { position: relative; display: inline-flex; flex-direction: column; align-items: center; z-index: 1; max-width: 100%; }
+        .download-wrapper.open { z-index: 1000; }
         .download-btn {
             background: var(--accent-color); color: #000; padding: 24px 70px; border-radius: 15px;
             text-decoration: none; font-weight: 800; font-size: 1.3em; display: inline-flex; justify-content: center;
             align-items: center; gap: 15px; transition: all 0.3s ease; text-transform: uppercase;
             letter-spacing: 1px; box-shadow: 0 10px 30px rgba(0, 230, 118, 0.4); cursor: pointer; border: none;
+            font-family: var(--font-stack); line-height: 1.2;
         }
         .download-btn:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 20px 50px rgba(0, 230, 118, 0.6); background: #fff; }
-        .btn-version { font-weight: 800; background: rgba(0,0,0,0.1); padding: 5px 10px; border-radius: 8px;}
+        .download-wrapper.open .download-btn { background: #fff; }
+        .btn-version { font-weight: 800; background: rgba(0,0,0,0.1); padding: 5px 10px; border-radius: 8px; white-space: nowrap;}
+        .download-arrow { font-size: 1.1em; transition: transform 0.3s ease; line-height: 1; }
+        .download-wrapper.open .download-arrow { transform: rotate(180deg); }
+        .download-menu {
+            display: none; width: min(420px, 100%); margin-top: 14px;
+            padding: 12px; border-radius: 16px;
+            background: rgba(9, 13, 20, 0.99); border: 1px solid var(--accent-color);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 25px rgba(0, 230, 118, 0.2);
+        }
+        .download-wrapper.open .download-menu { display: block; }
+        .download-option {
+            display: flex; justify-content: space-between; align-items: center; gap: 18px;
+            color: var(--text-main); text-decoration: none; padding: 16px 18px; border-radius: 12px;
+            font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;
+            transition: all 0.25s ease; cursor: pointer;
+        }
+        .download-option:hover { background: rgba(0, 230, 118, 0.12); color: var(--accent-color); }
 
         /* --- SEZIONE CONTATTI & FOOTER --- */
         .contact-section {
+            position: relative; z-index: 1;
             background: rgba(0, 0, 0, 0.7); border: 1px solid var(--card-border); border-radius: 20px;
             padding: 45px; max-width: 650px; margin: 0 auto; backdrop-filter: blur(15px); box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
@@ -324,7 +345,10 @@
             .card-header { margin-bottom: 25px; gap: 15px; }
             .feature-list li { font-size: 1em; padding-left: 28px; margin-bottom: 18px; }
             
-            .download-btn { width: 100%; padding: 20px 20px; font-size: 1.15em; box-sizing: border-box; }
+            .download-wrapper { width: 100%; }
+            .download-btn { width: 100%; padding: 20px 18px; font-size: 1.05em; box-sizing: border-box; flex-wrap: wrap; }
+            .download-menu { width: 100%; min-width: 0; }
+            .download-option { white-space: normal; text-align: left; gap: 12px; }
             
             .brand-header { font-size: 1.8em; }
             .models-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -361,7 +385,7 @@
                 <img src="logo.png" alt="BombBatteryTester Logo">
             </div>
             <h2>Aggiornamento Disponibile!</h2>
-            <p>È ora disponibile la nuova <strong>Versione 3.1</strong> di BombBatteryTester con il database modelli espanso.</p>
+            <p>È ora disponibile la nuova <strong>Versione 3.1</strong> di BombBatteryTester con il database modelli espanso. È disponibile anche la <strong>Beta 3.2</strong>.</p>
             <button onclick="closeModal()" class="modal-btn">Ok, Chiudi</button>
         </div>
     </div>
@@ -426,11 +450,24 @@
             </div>
 
             <div class="download-area">
-                <a href="https://github.com/AntonioFerrara01/BBT/releases/download/3.1/bbt.exe" class="download-btn">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15L12 3M12 15L8 11M12 15L16 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17L2 18C2 19.6569 3.34315 21 5 21L19 21C20.6569 21 22 19.6569 22 18L22 17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span>Scarica Tool</span>
-                    <span class="btn-version">v3.1</span>
-                </a>
+                <div class="download-wrapper">
+                    <button type="button" class="download-btn" onclick="toggleDownloadMenu(event)" aria-haspopup="true" aria-expanded="false">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15L12 3M12 15L8 11M12 15L16 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17L2 18C2 19.6569 3.34315 21 5 21L19 21C20.6569 21 22 19.6569 22 18L22 17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span>Scarica Tool</span>
+                        <span class="btn-version">Scegli versione</span>
+                        <span class="download-arrow">▾</span>
+                    </button>
+                    <div class="download-menu" role="menu">
+                        <a href="https://github.com/AntonioFerrara01/BBT/releases/download/3.1/bbt.exe" class="download-option" role="menuitem">
+                            <span>Versione stabile</span>
+                            <span class="btn-version">v3.1</span>
+                        </a>
+                        <a href="https://github.com/AntonioFerrara01/BBT/releases/download/beta/BombBatteryTester_3.2_Beta.exe" class="download-option" role="menuitem">
+                            <span>Versione beta</span>
+                            <span class="btn-version">Beta 3.2</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -846,12 +883,25 @@
                 <p>Non trovi il modello che hai sul banco? Nessun problema! <strong>BombBatteryTester è programmato per riconoscere automaticamente i modelli non presenti nel database.</strong> Se il dispositivo non viene trovato, il terminale ti chiederà di inserire manualmente la <em>capacità di fabbrica (Design Capacity)</em> in mAh. Inserendo il valore, il software calcolerà il degrado con la stessa precisione assoluta di un modello pre-registrato.</p>
             </div>
             
-            <div style="margin-top: 60px; text-align: center;">
-                <a href="https://github.com/AntonioFerrara01/BBT/releases/download/3.1/bbt.exe" class="download-btn">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15L12 3M12 15L8 11M12 15L16 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17L2 18C2 19.6569 3.34315 21 5 21L19 21C20.6569 21 22 19.6569 22 18L22 17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span>Scarica Tool</span>
-                    <span class="btn-version">v3.1</span>
-                </a>
+            <div class="download-area" style="margin-top: 60px; text-align: center;">
+                <div class="download-wrapper">
+                    <button type="button" class="download-btn" onclick="toggleDownloadMenu(event)" aria-haspopup="true" aria-expanded="false">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15L12 3M12 15L8 11M12 15L16 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17L2 18C2 19.6569 3.34315 21 5 21L19 21C20.6569 21 22 19.6569 22 18L22 17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span>Scarica Tool</span>
+                        <span class="btn-version">Scegli versione</span>
+                        <span class="download-arrow">▾</span>
+                    </button>
+                    <div class="download-menu" role="menu">
+                        <a href="https://github.com/AntonioFerrara01/BBT/releases/download/3.1/bbt.exe" class="download-option" role="menuitem">
+                            <span>Versione stabile</span>
+                            <span class="btn-version">v3.1</span>
+                        </a>
+                        <a href="https://github.com/AntonioFerrara01/BBT/releases/download/beta/BombBatteryTester_3.2_Beta.exe" class="download-option" role="menuitem">
+                            <span>Versione beta</span>
+                            <span class="btn-version">Beta 3.2</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -900,6 +950,39 @@
                 window.scrollTo({top: 0, behavior: 'smooth'});
             }
         }
+
+        // Menu a tendina Download
+        function toggleDownloadMenu(event) {
+            event.stopPropagation();
+            const button = event.currentTarget;
+            const wrapper = button.closest('.download-wrapper');
+            if(!wrapper) return;
+
+            document.querySelectorAll('.download-wrapper.open').forEach(item => {
+                if(item !== wrapper) {
+                    item.classList.remove('open');
+                    const itemButton = item.querySelector('.download-btn');
+                    if(itemButton) itemButton.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            const isOpen = wrapper.classList.toggle('open');
+            button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        }
+
+        function closeDownloadMenu() {
+            document.querySelectorAll('.download-wrapper.open').forEach(wrapper => {
+                wrapper.classList.remove('open');
+                const button = wrapper.querySelector('.download-btn');
+                if(button) button.setAttribute('aria-expanded', 'false');
+            });
+        }
+
+        document.querySelectorAll('.download-menu').forEach(menu => {
+            menu.addEventListener('click', event => event.stopPropagation());
+        });
+
+        document.addEventListener('click', closeDownloadMenu);
 
         // Forza la comparsa del Popup in modo immediato alla lettura
         setTimeout(() => {
